@@ -87,11 +87,11 @@ body {
 }
 
 .orbit-ring {
-  animation: orbit-spin 8s linear infinite;
+  animation: orbit-spin 9s linear infinite;
   transform-origin: center;
 }
 .orbit-icon {
-  animation: counter-spin 8s linear infinite;
+  animation: counter-spin 9s linear infinite;
 }
 .counter-orbit-ring {
   animation: counter-spin 12s linear infinite;

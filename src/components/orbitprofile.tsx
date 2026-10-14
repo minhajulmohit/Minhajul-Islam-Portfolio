@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Profile from "../../public/asset/PPN.jpg";
-import { FaHtml5, FaJs, FaReact } from "react-icons/fa";
+import { FaHtml5, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
 import { FaCss } from "react-icons/fa6";
 import { BiLogoTypescript } from "react-icons/bi";
 import {
@@ -16,9 +16,9 @@ const OrbitProfile = () => {
   const innerIcons = [
     { Icon: FaHtml5, color: "text-orange-500" },
     { Icon: FaCss, color: " text-purple-500" },
-    { Icon: BiLogoTypescript, color: "text-blue-400" },
     { Icon: FaJs, color: "text-yellow-500" },
-    { Icon: FaReact, color: "text-sky-400" },
+    { Icon: BiLogoTypescript, color: "text-blue-400" },
+    { Icon: FaNodeJs, color: "text-[#339933]" },
   ];
   const outerIcons = [
     { Icon: SiNextdotjs, color: "text-white" },
@@ -27,6 +27,7 @@ const OrbitProfile = () => {
     { Icon: SiGithub, color: "text-white" },
     { Icon: SiMongodb, color: "text-green-400" },
     { Icon: SiBetterauth, color: "text-white" },
+    { Icon: FaReact, color: "text-sky-400" },
   ];
 
   return (

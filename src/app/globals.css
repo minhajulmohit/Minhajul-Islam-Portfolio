@@ -87,13 +87,13 @@ body {
 
   30% {
     opacity: 0.9;
-    transform: translate3d(140vw, 130vh, 0) rotate(45deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(40deg);
   }
 
   32%,
   100% {
     opacity: 0;
-    transform: translate3d(140vw, 130vh, 0) rotate(45deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(35deg);
   }
 }
 
@@ -160,7 +160,7 @@ body {
   color: transparent;
   -webkit-text-fill-color: transparent;
 
-  animation: name-shine 3s ease-in infinite;
+  animation: name-shine 9s ease-in infinite;
 }
 
 @keyframes name-shine {
@@ -176,4 +176,3 @@ body {
     background-position: 0% 0;
   }
 }
- 

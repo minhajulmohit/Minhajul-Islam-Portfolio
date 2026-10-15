@@ -27,6 +27,73 @@ body {
   box-shadow: 0 0 8px 2px rgb(168 85 247 / 35%);
 }
 
+.stack-badge {
+  position: absolute;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgb(103 232 249 / 22%);
+  border-radius: 9999px;
+  background: rgb(2 6 23 / 88%);
+  padding: 0.45rem 0.65rem;
+  color: #dbeafe;
+  font-size: 0.7rem;
+  font-weight: 500;
+  box-shadow: 0 4px 18px rgb(8 47 73 / 25%);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: stack-badge-float 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.stack-badge svg {
+  color: #67e8f9;
+  font-size: 0.9rem;
+}
+
+.stack-badge-one {
+  top: 12%;
+  left: -0.6rem;
+  animation-delay: 0s;
+}
+
+.stack-badge-two {
+  top: 28%;
+  right: -0.6rem;
+  animation-delay: 1s;
+}
+
+.stack-badge-three {
+  top: 44%;
+  left: -0.6rem;
+  animation-delay: 2s;
+}
+
+.stack-badge-four {
+  top: 60%;
+  right: -0.6rem;
+  animation-delay: 3s;
+}
+
+.stack-badge-five {
+  top: 74%;
+  left: -0.6rem;
+  animation-delay: 4s;
+}
+
+.stack-badge-six {
+  top: 84%;
+  right: -0.6rem;
+  animation-delay: 5s;
+}
+
+.stack-badge-seven {
+  top: 4%;
+  right: -0.6rem;
+  animation-delay: 6s;
+}
+
 .shooting-star {
   position: absolute;
   display: block;
@@ -61,6 +128,25 @@ body {
 
   50% {
     opacity: 0.9;
+  }
+}
+
+@keyframes stack-badge-float {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.96);
+  }
+
+  15%,
+  75% {
+    opacity: 0.9;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translate3d(0, -5px, 0) scale(1);
   }
 }
 
@@ -99,13 +185,19 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .particle,
-  .shooting-star {
+  .shooting-star,
+  .stack-badge {
     animation: none;
     will-change: auto;
   }
 
   .particle {
     opacity: 0.6;
+  }
+
+  .stack-badge {
+    opacity: 0.9;
+    transform: none;
   }
 }
 

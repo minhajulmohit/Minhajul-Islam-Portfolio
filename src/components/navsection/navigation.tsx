@@ -37,14 +37,13 @@ const Navigation = () => {
           ))}
         </nav>
 
-        <button
-          type="button"
-          disabled
-          title="Add your CV as public/cv.pdf to enable the download"
-          className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100/50 disabled:cursor-not-allowed sm:px-4 sm:text-sm"
+        <a
+          href="/Minhajul_Islam_Mohit_CV.pdf"
+          download="Minhajul_Islam_Mohit_CV.pdf"
+          className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition-colors hover:border-cyan-200/60 hover:bg-cyan-300/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-4 sm:text-sm"
         >
           Download CV
-        </button>
+        </a>
       </div>
     </header>
   );

@@ -31,25 +31,25 @@ body {
   position: absolute;
   z-index: 10;
   display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
   border: 1px solid rgb(103 232 249 / 22%);
   border-radius: 9999px;
   background: rgb(2 6 23 / 88%);
-  padding: 0.45rem 0.65rem;
   color: #dbeafe;
-  font-size: 0.7rem;
   font-weight: 500;
   box-shadow: 0 4px 18px rgb(8 47 73 / 25%);
   backdrop-filter: blur(10px);
   opacity: 0;
-  animation: stack-badge-float 7s ease-in-out infinite;
+  animation: stack-badge-float 11s ease-in-out infinite;
   will-change: transform, opacity;
 }
 
 .stack-badge svg {
   color: #67e8f9;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .stack-badge-one {
@@ -61,37 +61,37 @@ body {
 .stack-badge-two {
   top: 28%;
   right: -0.6rem;
-  animation-delay: 1s;
+  animation-delay: 1.5s;
 }
 
 .stack-badge-three {
   top: 44%;
   left: -0.6rem;
-  animation-delay: 2s;
+  animation-delay: 3s;
 }
 
 .stack-badge-four {
   top: 60%;
   right: -0.6rem;
-  animation-delay: 3s;
+  animation-delay: 4.5s;
 }
 
 .stack-badge-five {
   top: 74%;
   left: -0.6rem;
-  animation-delay: 4s;
+  animation-delay: 6s;
 }
 
 .stack-badge-six {
   top: 84%;
   right: -0.6rem;
-  animation-delay: 5s;
+  animation-delay: 7.5s;
 }
 
 .stack-badge-seven {
   top: 4%;
   right: -0.6rem;
-  animation-delay: 6s;
+  animation-delay: 9s;
 }
 
 .shooting-star {

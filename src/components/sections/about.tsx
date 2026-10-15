@@ -53,11 +53,9 @@ const About = () => {
                 <span
                   key={label}
                   className={`stack-badge ${position}`}
-                  title={label}
                   aria-label={label}
                 >
                   <Icon aria-hidden="true" />
-                  <span>{label}</span>
                 </span>
               ))}
             </div>

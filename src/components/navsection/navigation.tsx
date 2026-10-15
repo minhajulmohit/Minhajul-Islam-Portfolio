@@ -3,6 +3,7 @@ const links = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
@@ -24,7 +25,7 @@ const Navigation = () => {
 
         <nav
           aria-label="Main navigation"
-          className="order-last grid w-full grid-cols-3 gap-1 border-t border-white/10 pt-2 sm:grid-cols-6 lg:order-0 lg:flex lg:w-auto lg:border-0 lg:pt-0"
+          className="order-last grid w-full grid-cols-3 gap-1 border-t border-white/10 pt-2 sm:grid-cols-4 md:grid-cols-7 lg:order-0 lg:flex lg:w-auto lg:border-0 lg:pt-0"
         >
           {links.map(({ label, href }) => (
             <a

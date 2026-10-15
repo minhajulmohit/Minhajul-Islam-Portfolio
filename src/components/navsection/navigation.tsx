@@ -1,0 +1,53 @@
+const links = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
+];
+
+const Navigation = () => {
+  return (
+    <header className="sticky top-3 z-50 mx-3 mt-4 sm:mx-6">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-3 rounded-2xl border border-white/10 bg-slate-950/65 px-3 py-3 shadow-lg shadow-black/10 backdrop-blur-xl sm:px-5">
+        <a
+          href="#home"
+          className="flex items-center gap-2.5 rounded-lg text-sm font-semibold tracking-wide text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+          aria-label="Minhajul Islam Mohit, home"
+        >
+          <span className="flex size-9 items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 text-cyan-200">
+            MM
+          </span>
+          <span>Minhajul Islam</span>
+        </a>
+
+        <nav
+          aria-label="Main navigation"
+          className="order-last grid w-full grid-cols-3 gap-1 border-t border-white/10 pt-2 sm:grid-cols-6 lg:order-0 lg:flex lg:w-auto lg:border-0 lg:pt-0"
+        >
+          {links.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              className="rounded-lg px-2 py-2 text-center text-xs text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-3 sm:text-sm"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          type="button"
+          disabled
+          title="Add your CV as public/cv.pdf to enable the download"
+          className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100/50 disabled:cursor-not-allowed sm:px-4 sm:text-sm"
+        >
+          Download CV
+        </button>
+      </div>
+    </header>
+  );
+};
+
+export default Navigation;

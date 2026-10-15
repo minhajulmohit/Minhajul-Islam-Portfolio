@@ -27,6 +27,21 @@ body {
   box-shadow: 0 0 8px 2px rgb(168 85 247 / 35%);
 }
 
+.shooting-star {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent 0%, #67e8f9 65%, #fff 100%);
+  opacity: 0;
+  filter: drop-shadow(0 0 7px rgb(103 232 249 / 95%));
+  transform: translate3d(0, 0, 0) rotate(-25deg);
+  transform-origin: center;
+  animation: shooting-star 30s linear infinite;
+  will-change: transform, opacity;
+}
+
 @keyframes float-particle {
   0%,
   100% {
@@ -59,10 +74,37 @@ body {
   }
 }
 
+@keyframes shooting-star {
+  0%,
+  4% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-25deg);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.9;
+    transform: translate3d(150vw, 0, 0) rotate(-25deg);
+  }
+
+  27%,
+  100% {
+    opacity: 0;
+    transform: translate3d(150vw, 0, 0) rotate(-25deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .particle {
+  .particle,
+  .shooting-star {
     animation: none;
     will-change: auto;
+  }
+
+  .particle {
     opacity: 0.6;
   }
 }

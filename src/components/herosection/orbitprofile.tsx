@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Profile from "../../public/asset/PPN.jpg";
+import Profile from "../../../public/asset/PPN.jpg";
 import { FaHtml5, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
 import { FaCss } from "react-icons/fa6";
 import { BiLogoTypescript } from "react-icons/bi";
@@ -32,7 +32,7 @@ const OrbitProfile = () => {
 
   return (
     <div className="m-10">
-      <div className="relative h-34 w-34 shrink-0 sm:h-64 sm:w-64">
+      <div className="relative h-32 w-32 shrink-0 sm:h-64 sm:w-64">
         <Image
           src={Profile}
           alt="My Profile"
@@ -41,7 +41,7 @@ const OrbitProfile = () => {
         ></Image>
         <div className="absolute inset-0 rounded-full border-2 border-cyan-400"></div>
         {/* first orbit */}
-        <div className="absolute -inset-7 sm:-inset-10 rounded-full border border-cyan-400 orbit-ring">
+        <div className="orbit-ring absolute -inset-[1.75rem] rounded-full border border-cyan-400 sm:-inset-[2.5rem]">
           {innerIcons.map(({ Icon, color }, index) => {
             const angle = (index * 360) / innerIcons.length - 90;
 
@@ -53,14 +53,14 @@ const OrbitProfile = () => {
             return (
               <span
                 key={index}
-                className="absolute orbit-icon flex items-center justify-center rounded-full bg-slate-950 -translate-x-1/2 -translate-y-1/2"
+                className="orbit-icon absolute flex items-center justify-center rounded-full bg-slate-950 -translate-x-1/2 -translate-y-1/2"
                 style={{
                   left: `${x}%`,
                   top: `${y}%`,
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <span className={`${color}`}>
+                <span className={color}>
                   <Icon className="size-5 sm:size-8" />
                 </span>
               </span>
@@ -69,7 +69,7 @@ const OrbitProfile = () => {
         </div>
         {/* second orbit */}
 
-        <div className="counter-orbit-ring absolute -inset-15 rounded-full border border-purple-400/40 sm:-inset-22">
+        <div className="counter-orbit-ring absolute -inset-[3.75rem] rounded-full border border-purple-400/40 sm:-inset-[5.5rem]">
           {outerIcons.map(({ Icon, color }, index) => {
             const angle = (index * 360) / outerIcons.length - 90;
 
@@ -81,14 +81,14 @@ const OrbitProfile = () => {
             return (
               <span
                 key={index}
-                className="absolute counter-orbit-icon flex items-center justify-center rounded-full bg-slate-950 -translate-x-1/2 -translate-y-1/2"
+                className="counter-orbit-icon absolute flex items-center justify-center rounded-full bg-slate-950 -translate-x-1/2 -translate-y-1/2"
                 style={{
                   left: `${x}%`,
                   top: `${y}%`,
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <span className={`${color}`}>
+                <span className={color}>
                   <Icon className="size-5 sm:size-8" />
                 </span>
               </span>

@@ -33,6 +33,14 @@ const particles = [
   { x: 3, y: 75, size: 3, delay: 2.9, duration: 6, color: "purple" },
   { x: 54, y: 5, size: 2, delay: 1.0, duration: 5.6, color: "cyan" },
 ];
+
+const shootingStars = [
+  { y: 12, delay: "0s" },
+  { y: 35, delay: "7.5s" },
+  { y: 58, delay: "15s" },
+  { y: 78, delay: "22.5s" },
+];
+
 const FloatingParticles = () => {
   return (
     <div
@@ -52,6 +60,17 @@ const FloatingParticles = () => {
             height: `${particle.size}px`,
             animationDelay: `${particle.delay}s`,
             animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
+      {shootingStars.map((star, index) => (
+        <span
+          key={`shooting-star-${index}`}
+          className="shooting-star"
+          style={{
+            left: "-20vw",
+            top: `${star.y}%`,
+            animationDelay: star.delay,
           }}
         />
       ))}

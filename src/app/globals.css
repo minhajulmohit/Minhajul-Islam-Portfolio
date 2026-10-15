@@ -36,9 +36,9 @@ body {
   background: linear-gradient(90deg, transparent 0%, #67e8f9 65%, #fff 100%);
   opacity: 0;
   filter: drop-shadow(0 0 7px rgb(103 232 249 / 95%));
-  transform: translate3d(0, 0, 0) rotate(-25deg);
+  transform: translate3d(0, 0, 0) rotate(45deg);
   transform-origin: center;
-  animation: shooting-star 30s linear infinite;
+  animation: shooting-star 36s linear infinite;
   will-change: transform, opacity;
 }
 
@@ -78,22 +78,22 @@ body {
   0%,
   4% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(-25deg);
+    transform: translate3d(0, 0, 0) rotate(45deg);
   }
 
   5% {
     opacity: 1;
   }
 
-  25% {
+  30% {
     opacity: 0.9;
-    transform: translate3d(150vw, 0, 0) rotate(-25deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(45deg);
   }
 
-  27%,
+  32%,
   100% {
     opacity: 0;
-    transform: translate3d(150vw, 0, 0) rotate(-25deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(45deg);
   }
 }
 
@@ -176,3 +176,4 @@ body {
     background-position: 0% 0;
   }
 }
+ 

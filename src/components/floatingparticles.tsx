@@ -35,10 +35,10 @@ const particles = [
 ];
 
 const shootingStars = [
-  { y: 12, delay: "0s" },
-  { y: 35, delay: "7.5s" },
-  { y: 58, delay: "15s" },
-  { y: 78, delay: "22.5s" },
+  { delay: "0s" },
+  { delay: "9s" },
+  { delay: "18s" },
+  { delay: "27s" },
 ];
 
 const FloatingParticles = () => {
@@ -69,7 +69,7 @@ const FloatingParticles = () => {
           className="shooting-star"
           style={{
             left: "-20vw",
-            top: `${star.y}%`,
+            top: "-15vh",
             animationDelay: star.delay,
           }}
         />

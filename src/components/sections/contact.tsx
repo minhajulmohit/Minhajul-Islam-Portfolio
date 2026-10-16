@@ -1,4 +1,10 @@
-import { FaEnvelope, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaLinkedinIn,
+  FaPhoneAlt,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const contactMethods = [
   {
@@ -20,6 +26,20 @@ const contactMethods = [
     value: "+880 1906-104529",
     href: "https://wa.me/8801906104529",
     Icon: FaWhatsapp,
+    accent: "text-cyan-300",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/minhajulmohit",
+    href: "https://github.com/minhajulmohit",
+    Icon: FaGithub,
+    accent: "text-purple-300",
+  },
+  {
+    label: "LinkedIn",
+    value: "in/md-minhajul-islam-mohit",
+    href: "https://www.linkedin.com/in/md-minhajul-islam-mohit/",
+    Icon: FaLinkedinIn,
     accent: "text-cyan-300",
   },
 ];
@@ -53,8 +73,8 @@ const Contact = () => {
             <a
               key={label}
               href={href}
-              target={label === "WhatsApp" ? "_blank" : undefined}
-              rel={label === "WhatsApp" ? "noreferrer" : undefined}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer" : undefined}
               className="group flex min-w-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/3 p-4 transition-colors hover:border-cyan-300/30 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:p-5"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-slate-950/70">

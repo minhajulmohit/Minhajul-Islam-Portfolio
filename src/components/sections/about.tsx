@@ -2,7 +2,6 @@ import Image from "next/image";
 import { FaCss3Alt, FaHtml5, FaJs, FaNodeJs, FaReact } from "react-icons/fa";
 import { BiLogoTypescript } from "react-icons/bi";
 import { SiNextdotjs } from "react-icons/si";
-import Profile from "../../../public/asset/PP.jpg";
 
 const stackBadges = [
   { label: "HTML", Icon: FaHtml5, position: "stack-badge-one" },
@@ -39,7 +38,7 @@ const About = () => {
             <div className="relative aspect-4/5 rounded-4xl border border-cyan-300/30 bg-linear-to-br from-cyan-400/20 via-slate-900 to-purple-500/20 p-2 shadow-2xl shadow-cyan-950/30">
               <div className="relative h-full overflow-hidden rounded-3xl border border-white/10">
                 <Image
-                  src={Profile}
+                  src="/asset/PP.jpg"
                   alt="Minhajul Islam Mohit"
                   fill
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 360px"

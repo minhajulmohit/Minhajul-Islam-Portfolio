@@ -9,6 +9,7 @@ import {
   FaNodeJs,
   FaPlug,
   FaReact,
+  FaServer,
   FaWindows,
 } from "react-icons/fa";
 import {
@@ -81,7 +82,7 @@ const skillGroups: SkillGroup[] = [
     description: "Connecting applications with services and data.",
     accent: "text-cyan-300",
     skills: [
-      { name: "REST APIs", icon: FaPlug, color: "#67E8F9" },
+      { name: "REST APIs", icon: FaServer, color: "#67E8F9" },
       { name: "API Integration", icon: FaPlug, color: "#A78BFA" },
     ],
   },

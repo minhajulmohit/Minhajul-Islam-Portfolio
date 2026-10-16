@@ -94,7 +94,8 @@ body {
   animation-delay: 9s;
 }
 
-.shooting-star {
+.shooting-star-slow,
+.shooting-star-fast {
   position: absolute;
   display: block;
   width: 180px;
@@ -103,10 +104,31 @@ body {
   background: linear-gradient(90deg, transparent 0%, #67e8f9 65%, #fff 100%);
   opacity: 0;
   filter: drop-shadow(0 0 7px rgb(103 232 249 / 95%));
-  transform: translate3d(0, 0, 0) rotate(45deg);
+  transform: translate3d(0, 0, 0) rotate(30deg);
   transform-origin: center;
-  animation: shooting-star 36s linear infinite;
   will-change: transform, opacity;
+}
+
+.shooting-star-slow {
+  animation: shooting-star-slow 36s linear infinite;
+}
+
+.shooting-star-fast {
+  animation: shooting-star-fast 18s linear infinite;
+}
+
+/* Meteor entry height: middle of the screen on mobile/tablet,
+   original top on desktop. --lane keeps the 3-line separation. */
+.meteor-entry {
+  top: calc(30vh - 150px + var(--lane, 0px));
+  left: -60vw;
+}
+
+@media (min-width: 1024px) {
+  .meteor-entry {
+    top: calc(-15vh + var(--lane, 0px));
+    left: -20vw;
+  }
 }
 
 @keyframes float-particle {
@@ -160,11 +182,11 @@ body {
   }
 }
 
-@keyframes shooting-star {
+@keyframes shooting-star-slow {
   0%,
   4% {
     opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(45deg);
+    transform: translate3d(0, 0, 0) rotate(30deg);
   }
 
   5% {
@@ -173,20 +195,101 @@ body {
 
   30% {
     opacity: 0.9;
-    transform: translate3d(140vw, 130vh, 0) rotate(40deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(30deg);
   }
 
   32%,
   100% {
     opacity: 0;
-    transform: translate3d(140vw, 130vh, 0) rotate(35deg);
+    transform: translate3d(140vw, 130vh, 0) rotate(30deg);
+  }
+}
+
+@keyframes shooting-star-fast {
+  0%,
+  0.5% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(30deg);
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  3.8% {
+    opacity: 0.9;
+    transform: translate3d(140vw, 130vh, 0) rotate(30deg);
+  }
+
+  4.2%,
+  100% {
+    opacity: 0;
+    transform: translate3d(140vw, 130vh, 0) rotate(30deg);
+  }
+}
+
+/* Mobile/tablet only: fixed 45deg angle.
+   Desktop keeps your 30deg. Positions and timing untouched. */
+@media (max-width: 1023.5px) {
+  .shooting-star-slow,
+  .shooting-star-fast {
+    transform: translate3d(0, 0, 0) rotate(50deg);
+  }
+
+  @keyframes shooting-star-slow {
+    0%,
+    4% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) rotate(50deg);
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    30% {
+      opacity: 0.9;
+      transform: translate3d(140vw, 130vh, 0) rotate(50deg);
+    }
+
+    32%,
+    100% {
+      opacity: 0;
+      transform: translate3d(140vw, 130vh, 0) rotate(50deg);
+    }
+  }
+
+  @keyframes shooting-star-fast {
+    0%,
+    0.5% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) rotate(50deg);
+    }
+
+    1% {
+      opacity: 1;
+    }
+
+    3.8% {
+      opacity: 0.9;
+      transform: translate3d(140vw, 130vh, 0) rotate(50deg);
+    }
+
+    4.2%,
+    100% {
+      opacity: 0;
+      transform: translate3d(140vw, 130vh, 0) rotate(50deg);
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .particle,
-  .shooting-star,
-  .stack-badge {
+  .shooting-star-slow,
+  .shooting-star-fast,
+  .stack-badge,
+  .social-reveal,
+  .devpet-pop {
     animation: none;
     will-change: auto;
   }
@@ -197,6 +300,11 @@ body {
 
   .stack-badge {
     opacity: 0.9;
+    transform: none;
+  }
+
+  .social-reveal {
+    opacity: 1;
     transform: none;
   }
 }
@@ -267,4 +375,42 @@ body {
   100% {
     background-position: 0% 0;
   }
+}
+
+@keyframes social-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.social-reveal {
+  opacity: 0;
+  animation: social-reveal 0.6s ease-out forwards;
+}
+
+/* DevPet: crisp pixels + bubble pop. */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+@keyframes devpet-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.devpet-pop {
+  animation: devpet-pop 0.25s ease-out;
 }

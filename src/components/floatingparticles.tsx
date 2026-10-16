@@ -34,11 +34,14 @@ const particles = [
   { x: 54, y: 5, size: 2, delay: 1.0, duration: 5.6, color: "cyan" },
 ];
 
-const shootingStars = [
-  { delay: "0s" },
-  { delay: "9s" },
-  { delay: "18s" },
-  { delay: "27s" },
+import type { CSSProperties } from "react";
+
+const slowStars = [{ delay: "10s", lane: "0px" }];
+
+const fastStars = [
+  { delay: "4.9s", lane: "0px" },
+  { delay: "5s", lane: "-100px" },
+  { delay: "5.2s", lane: "+100px" },
 ];
 
 const FloatingParticles = () => {
@@ -63,15 +66,28 @@ const FloatingParticles = () => {
           }}
         />
       ))}
-      {shootingStars.map((star, index) => (
+      {slowStars.map((star, index) => (
         <span
-          key={`shooting-star-${index}`}
-          className="shooting-star"
-          style={{
-            left: "-20vw",
-            top: "-15vh",
-            animationDelay: star.delay,
-          }}
+          key={`slow-star-${index}`}
+          className="shooting-star-slow meteor-entry"
+          style={
+            {
+              animationDelay: star.delay,
+              "--lane": star.lane,
+            } as CSSProperties
+          }
+        />
+      ))}
+      {fastStars.map((star, index) => (
+        <span
+          key={`fast-star-${index}`}
+          className="shooting-star-fast meteor-entry"
+          style={
+            {
+              animationDelay: star.delay,
+              "--lane": star.lane,
+            } as CSSProperties
+          }
         />
       ))}
     </div>

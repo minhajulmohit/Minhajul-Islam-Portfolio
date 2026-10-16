@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaCss3Alt, FaHtml5, FaJs, FaNodeJs, FaReact } from "react-icons/fa";
 import { BiLogoTypescript } from "react-icons/bi";
 import { SiNextdotjs } from "react-icons/si";
+import Reveal from "@/components/reveal";
 
 const stackBadges = [
   { label: "HTML", Icon: FaHtml5, position: "stack-badge-one" },
@@ -18,10 +19,13 @@ const About = () => {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="scroll-mt-32 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-3 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 text-center sm:mb-10 lg:text-left">
+        <Reveal
+          variant="from-bottom"
+          className="mb-8 text-center sm:mb-10 lg:text-left"
+        >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             A little
           </p>
@@ -31,17 +35,22 @@ const About = () => {
           >
             About Me
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(250px,0.8fr)_minmax(0,1.5fr)] lg:gap-14">
-          <div className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none">
+          <Reveal
+            variant="from-left"
+            className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-none"
+          >
             <div className="relative aspect-4/5 rounded-4xl border border-cyan-300/30 bg-linear-to-br from-cyan-400/20 via-slate-900 to-purple-500/20 p-2 shadow-2xl shadow-cyan-950/30">
               <div className="relative h-full overflow-hidden rounded-3xl border border-white/10">
                 <Image
-                  src="/asset/PP.jpg"
+                  src="/asset/PPP.jpg"
                   alt="Minhajul Islam Mohit"
-                  fill
+                  
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 360px"
+                  height={50000}
+                  width={50000}
                   className="object-cover"
                 />
               </div>
@@ -58,9 +67,9 @@ const About = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="min-w-0">
+          <Reveal variant="from-right" className="min-w-0">
             <div className="space-y-4 text-sm leading-7 text-slate-300 sm:text-base sm:leading-8">
               <p>
                 Hi, I’m Minhajul Islam Mohit, an aspiring Full-Stack Web
@@ -104,7 +113,7 @@ const About = () => {
                 Explore My Projects
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

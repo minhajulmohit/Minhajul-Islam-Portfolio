@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Minhajul Islam Mohit, a Full Stack Web Developer building modern, responsive web applications with React, Next.js, and TypeScript.",
+  icons: {
+    icon: "/asset/cropped_circle_image.png",
+    apple: "/asset/cropped_circle_image.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

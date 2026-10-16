@@ -28,6 +28,7 @@ import {
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import type { IconType } from "react-icons";
+import Reveal, { type RevealVariant } from "@/components/reveal";
 
 type Skill = {
   name: string;
@@ -121,15 +122,24 @@ const skillGroups: SkillGroup[] = [
   },
 ];
 
+const cardVariants: RevealVariant[] = [
+  "from-left",
+  "from-top",
+  "from-right",
+  "from-bottom-left",
+  "from-bottom",
+  "from-bottom-right",
+];
+
 const Skills = () => {
   return (
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="scroll-mt-32 border-t border-purple-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-4 border-t border-purple-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 max-w-2xl sm:mb-10">
+        <Reveal variant="from-bottom" className="mb-8 max-w-2xl sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             My technical expertise
           </p>
@@ -143,12 +153,13 @@ const Skills = () => {
             Technologies I use and explore to build modern, responsive, and
             user-friendly web applications.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {skillGroups.map((group) => (
-            <article
+          {skillGroups.map((group, groupIndex) => (
+            <Reveal
               key={group.title}
+              variant={cardVariants[groupIndex % cardVariants.length]}
               className="group rounded-2xl border border-white/10 bg-white/3 p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/5 hover:shadow-xl hover:shadow-cyan-950/20 sm:p-6"
             >
               <div className="flex items-start gap-3">
@@ -167,10 +178,11 @@ const Skills = () => {
               </div>
 
               <ul className="mt-6 flex flex-wrap gap-2.5">
-                {group.skills.map(({ name, icon: Icon, color }) => (
+                {group.skills.map(({ name, icon: Icon, color }, skillIndex) => (
                   <li
                     key={name}
-                    className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-300/5"
+                    style={{ transitionDelay: `${300 + skillIndex * 70}ms` }}
+                    className="reveal-item inline-flex min-h-10 items-center gap-2 rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-300/5"
                   >
                     <Icon
                       aria-hidden="true"
@@ -181,7 +193,7 @@ const Skills = () => {
                   </li>
                 ))}
               </ul>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

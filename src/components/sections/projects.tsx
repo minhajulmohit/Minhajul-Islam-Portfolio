@@ -2,16 +2,19 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { projects } from "@/data/projects";
 import ProjectPreview from "@/components/projects/project-preview";
+import Reveal, { type RevealVariant } from "@/components/reveal";
+
+const cardVariants: RevealVariant[] = ["from-left", "from-right", "from-bottom"];
 
 const Projects = () => {
   return (
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="scroll-mt-32 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-4 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 max-w-2xl sm:mb-10">
+        <Reveal variant="from-bottom" className="mb-8 max-w-2xl sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Selected work
           </p>
@@ -24,12 +27,13 @@ const Projects = () => {
           <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
             A few projects I’ve built and the ideas behind them.
           </p>
-        </div>
+        </Reveal>
 
         <div className="space-y-5 sm:space-y-7">
           {projects.map((project, index) => (
-            <article
+            <Reveal
               key={project.slug}
+              variant={cardVariants[index % cardVariants.length]}
               className="group grid min-w-0 gap-5 rounded-2xl border border-white/10 bg-white/3 p-4 transition duration-300 hover:border-cyan-300/30 hover:bg-white/5 hover:shadow-xl hover:shadow-cyan-950/20 sm:gap-7 sm:p-6 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-8"
             >
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
@@ -70,7 +74,7 @@ const Projects = () => {
                   <FaArrowRight aria-hidden="true" className="size-3" />
                 </Link>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

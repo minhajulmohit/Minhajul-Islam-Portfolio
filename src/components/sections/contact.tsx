@@ -5,6 +5,7 @@ import {
   FaPhoneAlt,
   FaWhatsapp,
 } from "react-icons/fa";
+import Reveal from "@/components/reveal";
 
 const contactMethods = [
   {
@@ -49,10 +50,10 @@ const Contact = () => {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="scroll-mt-32 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-10 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="max-w-2xl">
+        <Reveal variant="from-bottom" className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Get in touch
           </p>
@@ -66,16 +67,20 @@ const Contact = () => {
             Have a project in mind or want to connect? Choose the easiest way
             to reach me.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {contactMethods.map(({ label, value, href, Icon, accent }) => (
-            <a
+          {contactMethods.map(({ label, value, href, Icon, accent }, contactIndex) => (
+            <Reveal
               key={label}
+              variant="zoom-in"
+              delay={contactIndex * 100}
+            >
+            <a
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="group flex min-w-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/3 p-4 transition-colors hover:border-cyan-300/30 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:p-5"
+              className="group flex h-full min-w-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/3 p-4 transition-colors hover:border-cyan-300/30 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:p-5"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-slate-950/70">
                 <Icon
@@ -92,6 +97,7 @@ const Contact = () => {
                 </span>
               </span>
             </a>
+            </Reveal>
           ))}
         </div>
       </div>

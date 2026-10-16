@@ -122,7 +122,11 @@ export const projects: PortfolioProject[] = [
     ],
     liveUrl: "https://banglanews24.vercel.app/",
     githubUrl: "https://github.com/minhajulmohit/Bangla-News-24",
-    challenges: [],
+    challenges: [
+      "Keeping live Bengali news data fresh with API revalidation while holding category pages fast took careful tuning.",
+      "Setting up Better Auth with email/password plus Google and GitHub sign-in, and protecting profile routes, required thorough testing.",
+      "Designing readable Bengali typography with consistent layouts across mobile and desktop screens needed several iterations.",
+    ],
     futurePlans: [
       "Add search functionality.",
       "Allow users to bookmark articles and keep reading history.",

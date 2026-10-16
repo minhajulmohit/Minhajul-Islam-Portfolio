@@ -1,4 +1,5 @@
 import { FaGraduationCap, FaSchool } from "react-icons/fa";
+import Reveal from "@/components/reveal";
 
 const education = [
   {
@@ -34,10 +35,10 @@ const Education = () => {
     <section
       id="education"
       aria-labelledby="education-heading"
-      className="scroll-mt-32 border-t border-purple-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-4 border-t border-purple-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 max-w-2xl sm:mb-10">
+        <Reveal variant="from-bottom" className="mb-8 max-w-2xl sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
             Academic background
           </p>
@@ -50,25 +51,30 @@ const Education = () => {
           <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
             My academic journey and ongoing studies.
           </p>
-        </div>
+        </Reveal>
 
         <div className="relative space-y-5 before:absolute before:bottom-10 before:left-5 before:top-10 before:w-px before:bg-linear-to-b before:from-cyan-300/50 before:via-purple-400/40 before:to-transparent sm:space-y-6 sm:before:left-6">
           {education.map(
-            ({
-              level,
-              degree,
-              institution,
-              location,
-              period,
-              detail,
-              result,
-              status,
-              Icon,
-              accent,
-              marker,
-            }) => (
-              <article
+            (
+              {
+                level,
+                degree,
+                institution,
+                location,
+                period,
+                detail,
+                result,
+                status,
+                Icon,
+                accent,
+                marker,
+              },
+              eduIndex,
+            ) => (
+              <Reveal
                 key={level}
+                variant="from-right"
+                delay={eduIndex * 120}
                 className="relative pl-12 sm:pl-16"
               >
                 <span
@@ -113,7 +119,7 @@ const Education = () => {
                     </span>
                   </div>
                 </div>
-              </article>
+              </Reveal>
             ),
           )}
         </div>

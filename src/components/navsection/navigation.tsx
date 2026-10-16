@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const links = [
@@ -38,10 +39,15 @@ const Navigation = () => {
           className="flex items-center gap-2.5 rounded-lg text-sm font-semibold tracking-wide text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
           aria-label="Minhajul Islam Mohit, home"
         >
-          <span className="flex size-9 items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 text-cyan-200">
-            MM
-          </span>
-          <span>Minhajul Islam</span>
+          <Image
+            src="/asset/PPN2.jpg"
+            alt="Minhajul Islam Mohit"
+            width={36}
+            height={36}
+            className="size-9 rounded-xl border border-cyan-300/30 object-cover"
+          />
+          <span className="hidden sm:inline">Minhajul Islam</span>
+          <span className="sm:hidden">Mohit</span>
         </a>
 
         {/* md only: reduced links */}

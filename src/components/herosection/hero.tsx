@@ -1,5 +1,7 @@
 import OrbitProfile from "./orbitprofile";
-import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaArrowRight, FaEye, FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
+import Reveal from "@/components/reveal";
 
 const socials = [
   {
@@ -27,31 +29,70 @@ const Hero = () => {
       className="scroll-mt-38 mt-10 flex flex-col items-center gap-12 px-4 py-3 sm:mt-20 sm:flex-row sm:justify-between sm:gap-8"
     >
       <div className="w-full min-w-0 sm:w-1/2 sm:text-left">
-        <h1 className="name-shine text-4xl font-bold sm:text-5xl">
-          Hi, I&apos;m <br />
-          Minhajul Islam Mohit
+        <h1 className="text-4xl font-bold sm:text-5xl">
+          <Reveal as="span" variant="from-bottom" className="block text-white">
+            Hi, I&apos;m
+          </Reveal>
+          <Reveal
+            as="span"
+            variant="from-bottom"
+            delay={120}
+            className="name-shine block"
+          >
+            Minhajul Islam Mohit
+          </Reveal>
         </h1>
-        <p className="text-white font-bold">Full Stack Web Developer.</p>
+        <Reveal variant="from-bottom" delay={220}>
+          <p className="text-white font-bold">Full Stack Web Developer.</p>
+        </Reveal>
+        <Reveal variant="from-bottom" delay={300}>
+          <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
+            <Link
+              href="/cv"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
+            >
+              <FaEye aria-hidden="true" className="size-4" />
+              View CV
+            </Link>
+            <a
+              href="#projects"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-purple-300/40 hover:bg-purple-300/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-300"
+            >
+              View My Work
+              <FaArrowRight aria-hidden="true" className="size-3" />
+            </a>
+          </div>
+        </Reveal>
         <div className="mt-6 flex items-center gap-3">
           {socials.map(({ label, href, Icon }, index) => (
-            <a
+            <Reveal
               key={label}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={label}
-              title={label}
-              style={{ animationDelay: `${0.15 * index + 0.2}s` }}
-              className="social-reveal flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+              as="span"
+              variant="zoom-in"
+              delay={420 + index * 100}
+              className="inline-block"
             >
-              <Icon aria-hidden="true" className="size-4" />
-            </a>
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                title={label}
+                className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+              >
+                <Icon aria-hidden="true" className="size-4" />
+              </a>
+            </Reveal>
           ))}
         </div>
       </div>
-      <div className="flex w-full min-w-0 justify-center sm:w-1/2">
+      <Reveal
+        variant="zoom-in"
+        delay={150}
+        className="flex w-full min-w-0 justify-center sm:w-1/2"
+      >
         <OrbitProfile />
-      </div>
+      </Reveal>
     </section>
   );
 };

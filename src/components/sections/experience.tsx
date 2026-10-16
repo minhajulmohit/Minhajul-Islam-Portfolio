@@ -1,4 +1,5 @@
 import { FaBriefcase } from "react-icons/fa";
+import Reveal from "@/components/reveal";
 
 const experience = [
   {
@@ -40,10 +41,10 @@ const Experience = () => {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-32 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-4 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 max-w-2xl sm:mb-10">
+        <Reveal variant="from-bottom" className="mb-8 max-w-2xl sm:mb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
             Professional background
           </p>
@@ -56,11 +57,16 @@ const Experience = () => {
           <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
             Roles and responsibilities from my professional experience.
           </p>
-        </div>
+        </Reveal>
 
         <div className="relative space-y-5 before:absolute before:bottom-10 before:left-5 before:top-10 before:w-px before:bg-linear-to-b before:from-cyan-300/50 before:via-purple-400/40 before:to-transparent sm:space-y-6 sm:before:left-6">
-          {experience.map(({ role, period, responsibilities, accent, marker }) => (
-            <article key={role} className="relative pl-12 sm:pl-16">
+          {experience.map(({ role, period, responsibilities, accent, marker }, expIndex) => (
+            <Reveal
+              key={role}
+              variant="from-right"
+              delay={expIndex * 120}
+              className="relative pl-12 sm:pl-16"
+            >
               <span
                 aria-hidden="true"
                 className={`absolute left-0 top-6 flex size-10 items-center justify-center rounded-full border sm:left-1 sm:size-11 ${marker}`}
@@ -97,7 +103,7 @@ const Experience = () => {
                   ))}
                 </ul>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

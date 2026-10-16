@@ -17,7 +17,7 @@ const links = [
 const mdLinks = ["#home", "#skills", "#projects", "#contact"];
 
 const desktopLinkCls =
-  "rounded-lg px-2 py-2 text-center text-xs text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-3 sm:text-sm";
+  "rounded-lg px-2 py-2 text-center text-xs text-body transition-colors hover:text-heading focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3 sm:text-sm";
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -33,10 +33,10 @@ const Navigation = () => {
 
   return (
     <header className="sticky top-[15px] z-50 mx-3 mt-4 sm:mx-6">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-white/10 bg-slate-950/65 px-3 py-3 shadow-lg shadow-black/10 backdrop-blur-xl sm:px-5">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-line bg-ink/65 px-3 py-3 shadow-lg shadow-black/10 backdrop-blur-xl sm:px-5">
         <a
           href="#home"
-          className="flex items-center gap-2.5 rounded-lg text-sm font-semibold tracking-wide text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+          className="flex items-center gap-2.5 rounded-lg text-sm font-semibold tracking-wide text-heading focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           aria-label="Minhajul Islam Mohit, home"
         >
           <Image
@@ -44,7 +44,7 @@ const Navigation = () => {
             alt="Minhajul Islam Mohit"
             width={36}
             height={36}
-            className="size-9 rounded-xl border border-cyan-300/30 object-cover"
+            className="size-9 rounded-xl border border-accent/30 object-cover"
           />
           <span className="hidden sm:inline">Minhajul Islam</span>
           <span className="sm:hidden">Mohit</span>
@@ -80,7 +80,7 @@ const Navigation = () => {
           <a
             href="/asset/Minhajul_Islam_Mohit_CV.pdf"
             download="Minhajul_Islam_Mohit_CV.pdf"
-            className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition-colors hover:border-cyan-200/60 hover:bg-cyan-300/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-4 sm:text-sm"
+            className="rounded-xl border border-accent/30 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent transition-colors hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-4 sm:text-sm"
           >
             <span className="sm:hidden">CV</span>
             <span className="hidden sm:inline">Download CV</span>
@@ -92,7 +92,7 @@ const Navigation = () => {
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-200 transition-colors hover:border-cyan-300/30 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 md:hidden"
+            className="flex size-10 items-center justify-center rounded-xl border border-line bg-surface text-body transition-colors hover:border-accent/30 hover:text-heading focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:hidden"
           >
             {open ? (
               <FaTimes aria-hidden="true" className="size-4" />
@@ -106,14 +106,14 @@ const Navigation = () => {
         {open && (
           <nav
             aria-label="Mobile navigation"
-            className="w-full border-t border-white/10 pt-2 md:hidden"
+            className="w-full border-t border-line pt-2 md:hidden"
           >
             {links.map(({ label, href }) => (
               <a
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-3 py-2.5 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                className="block rounded-lg px-3 py-2.5 text-sm text-body transition-colors hover:text-heading focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 {label}
               </a>

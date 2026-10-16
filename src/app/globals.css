@@ -1,9 +1,153 @@
 @import "tailwindcss";
 
+/* ---------- Theme tokens (defaults = Dark Neon) ---------- */
+@theme {
+  --color-ink: #020617;
+  --color-heading: #ffffff;
+  --color-body: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-accent: #67e8f9;
+  --color-accent-hi: #a5f3fc;
+  --color-accent-2: #c084fc;
+  --color-on-accent: #020617;
+  --color-surface: #0c1428;
+  --color-line: #ffffff1a;
+}
+
+[data-theme="cyberpunk"] {
+  --color-ink: #000000;
+  --color-heading: #f4f4f5;
+  --color-body: #d4d4d8;
+  --color-muted: #a1a1aa;
+  --color-accent: #ff2e88;
+  --color-accent-hi: #ff7eb3;
+  --color-accent-2: #00e5ff;
+  --color-on-accent: #0a0a0f;
+  --color-surface: #14141f;
+  --color-line: #ffffff1a;
+}
+
+[data-theme="dracula"] {
+  --color-ink: #282a36;
+  --color-heading: #f8f8f2;
+  --color-body: #e0e1ea;
+  --color-muted: #9a9cb3;
+  --color-accent: #ff79c6;
+  --color-accent-hi: #ffa6d8;
+  --color-accent-2: #8be9fd;
+  --color-on-accent: #282a36;
+  --color-surface: #3a3f58;
+  --color-line: #ffffff1a;
+}
+
+[data-theme="nord-light"] {
+  --color-ink: #eceff4;
+  --color-heading: #2e3440;
+  --color-body: #3b4252;
+  --color-muted: #4c566a;
+  --color-accent: #5e81ac;
+  --color-accent-hi: #81a1c1;
+  --color-accent-2: #b48ead;
+  --color-on-accent: #eceff4;
+  --color-surface: #e5e9f0;
+  --color-line: #2e34402b;
+  color-scheme: light;
+}
+
+[data-theme="mocha"] {
+  --color-ink: #1e1e2e;
+  --color-heading: #cdd6f4;
+  --color-body: #bac2de;
+  --color-muted: #a6adc8;
+  --color-accent: #f5c2e7;
+  --color-accent-hi: #f9d9f0;
+  --color-accent-2: #b4befe;
+  --color-on-accent: #1e1e2e;
+  --color-surface: #45475a;
+  --color-line: #ffffff1a;
+}
+
+html {
+  color-scheme: dark;
+}
+
+/* Particles + meteors render only on Dark Neon. */
+html:not([data-theme="dark-neon"]) .floating-particles {
+  display: none;
+}
+
 html,
 body {
   max-width: 100%;
   overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-ink);
+  background-attachment: fixed;
+}
+
+/* Each theme paints its own backdrop. Dark Neon keeps the pure
+   original look (particles provide the life there). */
+[data-theme="cyberpunk"] body {
+  background-image:
+    radial-gradient(
+      900px 600px at 88% -5%,
+      color-mix(in oklab, var(--color-accent) 32%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      1000px 700px at -12% 102%,
+      color-mix(in oklab, var(--color-accent-2) 26%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 500px at 50% 55%,
+      color-mix(in oklab, var(--color-accent) 7%, transparent),
+      transparent 70%
+    );
+}
+
+[data-theme="dracula"] body {
+  background-image:
+    radial-gradient(
+      950px 600px at 50% -8%,
+      color-mix(in oklab, var(--color-accent) 30%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      800px 600px at 105% 90%,
+      color-mix(in oklab, var(--color-accent-2) 24%, transparent),
+      transparent 65%
+    );
+}
+
+[data-theme="nord-light"] body {
+  background-image:
+    radial-gradient(
+      1000px 520px at 50% -10%,
+      color-mix(in oklab, var(--color-accent) 28%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 600px at -10% 70%,
+      color-mix(in oklab, var(--color-heading) 8%, transparent),
+      transparent 70%
+    );
+}
+
+[data-theme="mocha"] body {
+  background-image:
+    radial-gradient(
+      850px 620px at -8% 30%,
+      color-mix(in oklab, var(--color-accent) 30%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      850px 620px at 108% 70%,
+      color-mix(in oklab, var(--color-accent-2) 30%, transparent),
+      transparent 65%
+    );
 }
 
 .particle {
@@ -18,13 +162,13 @@ body {
 }
 
 .particle.cyan {
-  background: #67e8f9;
-  box-shadow: 0 0 8px 2px rgb(34 211 238 / 35%);
+  background: var(--color-accent);
+  box-shadow: 0 0 8px 2px color-mix(in oklab, var(--color-accent) 35%, transparent);
 }
 
 .particle.purple {
-  background: #c084fc;
-  box-shadow: 0 0 8px 2px rgb(168 85 247 / 35%);
+  background: var(--color-accent-2);
+  box-shadow: 0 0 8px 2px color-mix(in oklab, var(--color-accent-2) 35%, transparent);
 }
 
 .stack-badge {
@@ -35,12 +179,12 @@ body {
   height: 2.5rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(103 232 249 / 22%);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 22%, transparent);
   border-radius: 9999px;
-  background: rgb(2 6 23 / 88%);
-  color: #dbeafe;
+  background: color-mix(in oklab, var(--color-ink) 88%, transparent);
+  color: var(--color-heading);
   font-weight: 500;
-  box-shadow: 0 4px 18px rgb(8 47 73 / 25%);
+  box-shadow: 0 4px 18px color-mix(in oklab, var(--color-accent) 25%, transparent);
   backdrop-filter: blur(10px);
   opacity: 0;
   animation: stack-badge-float 11s ease-in-out infinite;
@@ -48,7 +192,7 @@ body {
 }
 
 .stack-badge svg {
-  color: #67e8f9;
+  color: var(--color-accent);
   font-size: 1.1rem;
 }
 
@@ -101,9 +245,9 @@ body {
   width: 180px;
   height: 3px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, transparent 0%, #67e8f9 65%, #fff 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent) 65%, var(--color-heading) 100%);
   opacity: 0;
-  filter: drop-shadow(0 0 7px rgb(103 232 249 / 95%));
+  filter: drop-shadow(0 0 7px color-mix(in oklab, var(--color-accent) 95%, transparent));
   transform: translate3d(0, 0, 0) rotate(30deg);
   transform-origin: center;
   will-change: transform, opacity;
@@ -283,6 +427,31 @@ body {
   }
 }
 
+/* Nord Light: solid professional name color, no background-clip. */
+[data-theme="nord-light"] .name-shine {
+  background: none;
+  color: #1d4ed8;
+  -webkit-text-fill-color: #1d4ed8;
+}
+
+[data-theme="nord-light"] .counter-orbit-ring {
+  border-color: color-mix(in oklab, var(--color-accent-2) 75%, transparent);
+}
+
+/* Shadows live only on the light theme. Dark themes stay flat. */
+html:not([data-theme="nord-light"]) .about-photo,
+html:not([data-theme="nord-light"]) .about-photo-tag {
+  box-shadow: none;
+}
+
+html:not([data-theme="nord-light"]) .skill-card:hover {
+  box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+}
+
+html:not([data-theme="nord-light"]) .project-card:hover {
+  box-shadow: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .particle,
   .shooting-star-slow,
@@ -349,11 +518,11 @@ body {
   display: inline-block;
   background: linear-gradient(
     110deg,
-    #06b6d4 0%,
-    #8b5cf6 35%,
-    #ffffff 50%,
-    #8b5cf6 65%,
-    #06b6d4 100%
+    var(--color-accent) 0%,
+    var(--color-accent-2) 35%,
+    var(--color-heading) 50%,
+    var(--color-accent-2) 65%,
+    var(--color-accent) 100%
   );
   background-size: 250% 100%;
   background-position: 100% 0;

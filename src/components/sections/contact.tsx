@@ -13,35 +13,35 @@ const contactMethods = [
     value: "minhajul.mohit@gmail.com",
     href: "mailto:minhajul.mohit@gmail.com",
     Icon: FaEnvelope,
-    accent: "text-cyan-300",
+    accent: "text-accent",
   },
   {
     label: "Phone",
     value: "01906104529",
     href: "tel:+8801906104529",
     Icon: FaPhoneAlt,
-    accent: "text-purple-300",
+    accent: "text-accent-2",
   },
   {
     label: "WhatsApp",
     value: "+880 1906-104529",
     href: "https://wa.me/8801906104529",
     Icon: FaWhatsapp,
-    accent: "text-cyan-300",
+    accent: "text-accent",
   },
   {
     label: "GitHub",
     value: "github.com/minhajulmohit",
     href: "https://github.com/minhajulmohit",
     Icon: FaGithub,
-    accent: "text-purple-300",
+    accent: "text-accent-2",
   },
   {
     label: "LinkedIn",
     value: "in/md-minhajul-islam-mohit",
     href: "https://www.linkedin.com/in/md-minhajul-islam-mohit/",
     Icon: FaLinkedinIn,
-    accent: "text-cyan-300",
+    accent: "text-accent",
   },
 ];
 
@@ -50,20 +50,20 @@ const Contact = () => {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="scroll-mt-10 border-t border-cyan-400/20 py-12 sm:py-16 lg:py-20"
+      className="scroll-mt-10 border-t border-accent/20 py-12 sm:py-16 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
         <Reveal variant="from-bottom" className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             Get in touch
           </p>
           <h2
             id="contact-heading"
-            className="mt-2 text-2xl font-semibold text-white sm:text-3xl"
+            className="mt-2 text-2xl font-semibold text-heading sm:text-3xl"
           >
             Contact
           </h2>
-          <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+          <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
             Have a project in mind or want to connect? Choose the easiest way
             to reach me.
           </p>
@@ -80,19 +80,19 @@ const Contact = () => {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="group flex h-full min-w-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/3 p-4 transition-colors hover:border-cyan-300/30 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:p-5"
+              className="group flex h-full min-w-0 items-center gap-4 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:p-5"
             >
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-slate-950/70">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-line bg-ink/70">
                 <Icon
                   aria-hidden="true"
                   className={`size-4 ${accent} transition-transform group-hover:scale-110`}
                 />
               </span>
               <span className="min-w-0">
-                <span className="block text-xs font-medium uppercase tracking-[0.14em] text-slate-500">
+                <span className="block text-xs font-medium uppercase tracking-[0.14em] text-muted">
                   {label}
                 </span>
-                <span className="mt-1 block break-all text-sm font-medium text-slate-200 group-hover:text-cyan-100 sm:text-base">
+                <span className="mt-1 block break-all text-sm font-medium text-body group-hover:text-accent sm:text-base">
                   {value}
                 </span>
               </span>

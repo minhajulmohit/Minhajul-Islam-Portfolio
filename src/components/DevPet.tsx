@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTheme } from "@/components/theme-provider";
 
 /* ------------------------- Customize DevPet here -------------------------
  * SPEED        pixels per second the cat walks
@@ -33,6 +34,7 @@ type Align = "left" | "center" | "right";
 type Meteor = { delay: number; dur: number };
 
 const DevPet = () => {
+  const { cycleTheme, theme } = useTheme();
   const trackRef = useRef<HTMLDivElement>(null);
   const spriteRef = useRef<HTMLButtonElement>(null);
   const bubbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -65,10 +67,15 @@ const DevPet = () => {
     meteors: [] as Meteor[],
   });
   const sittingRef = useRef(false);
+  const themeRef = useRef(theme);
 
   useEffect(() => {
     sittingRef.current = sitting;
   }, [sitting]);
+
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   const showBubble = useCallback((text: string) => {
     setBubble(text);
@@ -123,6 +130,11 @@ const DevPet = () => {
     const t0 = performance.now();
 
     const fastMidScreen = (now: number) => {
+      /* No meteors outside Dark Neon (hidden by CSS) — and none animate
+         under reduced motion. */
+      if (themeRef.current !== "dark-neon") return false;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+        return false;
       const t = now - t0;
       for (const m of s.meteors) {
         if (t < m.delay || !m.dur) continue;
@@ -250,17 +262,13 @@ const DevPet = () => {
     };
   }, [still, showBubble]);
 
-  /* Click/tap: sit + speech bubble, then resume walking. */
+  /* Click/tap: next theme + sit + speech bubble, then resume walking. */
   const handlePet = () => {
-    if (still) {
-      const s = live.current;
-      showBubble(MESSAGES[s.msgIndex % MESSAGES.length]);
-      s.msgIndex += 1;
-      return;
-    }
+    cycleTheme();
     const s = live.current;
     showBubble(MESSAGES[s.msgIndex % MESSAGES.length]);
     s.msgIndex += 1;
+    if (still) return;
     setSitting(true);
     if (sitTimer.current) clearTimeout(sitTimer.current);
     sitTimer.current = setTimeout(() => {
@@ -288,7 +296,7 @@ const DevPet = () => {
         {showMark && !sitting && !bubble && (
           <div
             aria-hidden="true"
-            className="devpet-pop pointer-events-none absolute -top-9 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border border-amber-300/50 bg-slate-950/95 text-sm font-bold text-amber-300 shadow-lg shadow-amber-950/40"
+            className="devpet-pop pointer-events-none absolute -top-9 left-1/2 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border border-amber-300/50 bg-ink/95 text-sm font-bold text-amber-300 shadow-lg shadow-amber-950/40"
           >
             !
           </div>
@@ -297,7 +305,7 @@ const DevPet = () => {
           <div
             role="status"
             aria-live="polite"
-            className={`devpet-pop pointer-events-none absolute -top-2 w-max max-w-[calc(100vw-2rem)] -translate-y-full rounded-xl border border-cyan-300/25 bg-slate-950/95 px-3 py-2 text-xs font-medium whitespace-normal text-cyan-100 shadow-lg shadow-cyan-950/40 backdrop-blur ${
+            className={`devpet-pop pointer-events-none absolute -top-2 w-max max-w-[calc(100vw-2rem)] -translate-y-full rounded-xl border border-accent/25 bg-ink/95 px-3 py-2 text-xs font-medium whitespace-normal text-accent shadow-lg shadow-accent/40 backdrop-blur ${
               align === "left"
                 ? "left-0"
                 : align === "right"
@@ -318,7 +326,7 @@ const DevPet = () => {
             if (e.key === "Escape") hideBubble();
           }}
           aria-label="Developer pet cat — activate for a message"
-          className="pixelated pointer-events-auto block cursor-pointer rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+          className="pixelated pointer-events-auto block cursor-pointer rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           style={{
             width: `${PET_SIZE}px`,
             height: `${PET_SIZE}px`,

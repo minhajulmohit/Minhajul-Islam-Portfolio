@@ -30,7 +30,7 @@ const Hero = () => {
     >
       <div className="w-full min-w-0 sm:w-1/2 sm:text-left">
         <h1 className="text-4xl font-bold sm:text-5xl">
-          <Reveal as="span" variant="from-bottom" className="block text-white">
+          <Reveal as="span" variant="from-bottom" className="block text-heading">
             Hi, I&apos;m
           </Reveal>
           <Reveal
@@ -43,20 +43,20 @@ const Hero = () => {
           </Reveal>
         </h1>
         <Reveal variant="from-bottom" delay={220}>
-          <p className="text-white font-bold">Full Stack Web Developer.</p>
+          <p className="text-heading font-bold">Full Stack Web Developer.</p>
         </Reveal>
         <Reveal variant="from-bottom" delay={300}>
           <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
             <Link
               href="/cv"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-hi focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               <FaEye aria-hidden="true" className="size-4" />
               View CV
             </Link>
             <a
               href="#projects"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-purple-300/40 hover:bg-purple-300/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-300"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-heading transition-colors hover:border-accent-2/40 hover:bg-accent-2/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2"
             >
               View My Work
               <FaArrowRight aria-hidden="true" className="size-3" />
@@ -78,7 +78,7 @@ const Hero = () => {
                 rel="noreferrer"
                 aria-label={label}
                 title={label}
-                className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                className="flex size-11 items-center justify-center rounded-xl border border-line bg-surface text-body transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 <Icon aria-hidden="true" className="size-4" />
               </a>

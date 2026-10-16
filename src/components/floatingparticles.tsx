@@ -44,11 +44,13 @@ const fastStars = [
   { delay: "5.2s", lane: "+100px" },
 ];
 
+/* Particles + meteors live only on Dark Neon (the original look).
+   Other themes show their own clean gradient backdrop instead. */
 const FloatingParticles = () => {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="floating-particles pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
       {particles.map((particle, index) => (
         <span

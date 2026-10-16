@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import FloatingParticles from "@/components/floatingparticles";
 import DevPet from "@/components/DevPet";
+import ThemeProvider from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +32,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="dark-neon"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-950 flex flex-col">
-        <FloatingParticles />
-        <DevPet />
-        <div className="relative z-10">{children}</div>
+      <body className="min-h-full bg-ink flex flex-col">
+        <ThemeProvider>
+          <FloatingParticles />
+          <DevPet />
+          <div className="relative z-10">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

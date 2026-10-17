@@ -29,6 +29,11 @@ const BUBBLE_MS = 2600;
 const SIT_MS = 2400;
 const SIT_COOL_MS = 12000;
 
+/* Themes where the meteors actually run — keep in sync with the
+   particle allowlist in globals.css. The cat reacts (and gets its
+   "!" mark) to fast streaks in exactly these themes. */
+const METEOR_THEMES = ["dark-neon", "clean-light", "midnight-purple"];
+
 type Align = "left" | "center" | "right";
 
 type Meteor = { delay: number; dur: number };
@@ -127,12 +132,18 @@ const DevPet = () => {
         dur: parseT(cs.animationDuration) || 18000,
       };
     });
-    const t0 = performance.now();
+    let t0 = performance.now();
+    let wasOnMeteorTheme = METEOR_THEMES.includes(themeRef.current);
 
     const fastMidScreen = (now: number) => {
-      /* No meteors outside Dark Neon (hidden by CSS) — and none animate
-         under reduced motion. */
-      if (themeRef.current !== "dark-neon") return false;
+      /* Meteors run only in METEOR_THEMES (see the allowlist in
+         globals.css) — and none animate under reduced motion. */
+      const onMeteorTheme = METEOR_THEMES.includes(themeRef.current);
+      /* Entering a meteor theme from one without them restarts the CSS
+         animations — re-anchor our clock so the reaction stays in sync. */
+      if (onMeteorTheme && !wasOnMeteorTheme) t0 = now;
+      wasOnMeteorTheme = onMeteorTheme;
+      if (!onMeteorTheme) return false;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return false;
       const t = now - t0;

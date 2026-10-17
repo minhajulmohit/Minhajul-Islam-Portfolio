@@ -17,6 +17,7 @@ export const THEMES = [
   "nord-light",
   "clean-light",
   "mocha",
+  "midnight-purple",
 ] as const;
 
 export type Theme = (typeof THEMES)[number];

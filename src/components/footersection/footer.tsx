@@ -33,7 +33,7 @@ const Footer = () => (
             rel="noreferrer"
             aria-label={label}
             title={label}
-            className="flex size-10 items-center justify-center rounded-xl border border-line bg-surface text-body transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="flex size-10 items-center justify-center rounded-xl border border-line bg-surface text-accent-2 transition-colors hover:border-accent-2/30 hover:bg-accent-2/10 hover:text-accent-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2"
           >
             <Icon aria-hidden="true" className="size-4" />
           </a>

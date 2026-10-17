@@ -15,29 +15,30 @@
 }
 
 [data-theme="cyberpunk"] {
-  --color-ink: #000000;
-  --color-heading: #f4f4f5;
-  --color-body: #d4d4d8;
-  --color-muted: #a1a1aa;
-  --color-accent: #ff2e88;
-  --color-accent-hi: #ff7eb3;
-  --color-accent-2: #00e5ff;
-  --color-on-accent: #0a0a0f;
-  --color-surface: #14141f;
-  --color-line: #ffffff1a;
+  --color-ink: #09090F;
+  --color-heading: #FAFAFA;
+  --color-body: #A1A1B5;
+  --color-muted: #A1A1B5;
+  --color-accent: #C96EBE;
+  --color-accent-hi: #DF88D6;
+  --color-accent-2: #00E5FF;
+  --color-on-accent: #09090F;
+  --color-surface: #191927;
+  --color-line: #343044;
 }
 
 [data-theme="dracula"] {
-  --color-ink: #282a36;
-  --color-heading: #f8f8f2;
-  --color-body: #e0e1ea;
-  --color-muted: #9a9cb3;
-  --color-accent: #ff79c6;
-  --color-accent-hi: #ffa6d8;
-  --color-accent-2: #8be9fd;
-  --color-on-accent: #282a36;
-  --color-surface: #3a3f58;
-  --color-line: #ffffff1a;
+  --color-ink: #282A36;
+  --color-heading: #F8F8F2;
+  --color-body: #B8B8C8;
+  --color-muted: #B8B8C8;
+  --color-accent: #BD93F9;
+  --color-accent-hi: #CBA6FF;
+  --color-accent-2: #FF79C6;
+  --color-on-accent: #282A36;
+  --color-surface: #343746;
+  --color-line: #44475A;
+  --color-alt: #21222C;
 }
 
 [data-theme="nord-light"] {
@@ -51,6 +52,20 @@
   --color-on-accent: #eceff4;
   --color-surface: #e5e9f0;
   --color-line: #2e34402b;
+  color-scheme: light;
+}
+
+[data-theme="clean-light"] {
+  --color-ink: #FFFFFF;
+  --color-heading: #111827;
+  --color-body: #4B5563;
+  --color-muted: #6B7280;
+  --color-accent: #2563EB;
+  --color-accent-hi: #1D4ED8;
+  --color-accent-2: #7C3AED;
+  --color-on-accent: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-line: #E5E7EB;
   color-scheme: light;
 }
 
@@ -71,9 +86,32 @@ html {
   color-scheme: dark;
 }
 
-/* Particles + meteors render only on Dark Neon. */
-html:not([data-theme="dark-neon"]) .floating-particles {
+/* Particles + meteors render on Dark Neon and Clean Light only. */
+html:not([data-theme="dark-neon"]):not([data-theme="clean-light"]) .floating-particles {
   display: none;
+}
+
+/* Theme toggle icon: swapped by CSS from the html data-theme attribute,
+   so the server and client markup always agree (no hydration mismatch). */
+.theme-icon-moon {
+  display: none;
+}
+
+[data-theme="nord-light"] .theme-icon-sun,
+[data-theme="clean-light"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="nord-light"] .theme-icon-moon,
+[data-theme="clean-light"] .theme-icon-moon {
+  display: block;
+}
+
+/* ---------- Navbar glass (all themes) ---------- */
+.nav-glass {
+  background-color: color-mix(in oklab, var(--color-ink) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
 
 html,
@@ -90,36 +128,316 @@ body {
 /* Each theme paints its own backdrop. Dark Neon keeps the pure
    original look (particles provide the life there). */
 [data-theme="cyberpunk"] body {
-  background-image:
-    radial-gradient(
-      900px 600px at 88% -5%,
-      color-mix(in oklab, var(--color-accent) 32%, transparent),
-      transparent 65%
-    ),
-    radial-gradient(
-      1000px 700px at -12% 102%,
-      color-mix(in oklab, var(--color-accent-2) 26%, transparent),
-      transparent 65%
-    ),
-    radial-gradient(
-      700px 500px at 50% 55%,
-      color-mix(in oklab, var(--color-accent) 7%, transparent),
-      transparent 70%
-    );
+  background-image: none;
+}
+
+/* ---------- Cyberpunk theme utilities ---------- */
+[data-theme="cyberpunk"] .text-gradient-cyber {
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-2) 55%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
+
+[data-theme="cyberpunk"] .btn-gradient-cyber {
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-2) 55%);
+}
+
+[data-theme="cyberpunk"] .btn-gradient-cyber:hover {
+  background: linear-gradient(90deg, var(--color-accent-hi) 0%, #33F0FF 55%);
+}
+
+[data-theme="cyberpunk"] ::selection {
+  background: #00E5FF;
+  color: #09090F;
+}
+
+[data-theme="cyberpunk"] :focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+}
+
+/* Skills: cyan icons, pink hover border, no extra shadows */
+[data-theme="cyberpunk"] .skill-card svg {
+  color: var(--color-accent-2) !important;
+}
+
+[data-theme="cyberpunk"] .skill-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: none !important;
+}
+
+/* Projects: pink-to-cyan gradient on featured borders only */
+[data-theme="cyberpunk"] .project-card {
+  border-color: var(--color-line);
+}
+
+[data-theme="cyberpunk"] .project-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: none !important;
+}
+
+/* Contact: inputs and focus states */
+[data-theme="cyberpunk"] .contact-input {
+  background-color: var(--color-surface);
+  color: var(--color-heading);
+  border-color: var(--color-line);
+}
+
+[data-theme="cyberpunk"] .contact-input:focus {
+  border-color: var(--color-accent-2);
+}
+
+[data-theme="cyberpunk"] .contact-input::placeholder {
+  color: var(--color-muted);
+}
+
+/* Orbit rings: pink inner, cyan outer */
+[data-theme="cyberpunk"] .orbit-ring {
+  border-color: var(--color-accent);
+}
+
+[data-theme="cyberpunk"] .counter-orbit-ring {
+  border-color: var(--color-accent-2);
+}
+
+/* Technology badges */
+[data-theme="cyberpunk"] .stack-badge {
+  border-color: color-mix(in oklab, var(--color-accent) 22%, transparent);
 }
 
 [data-theme="dracula"] body {
-  background-image:
-    radial-gradient(
-      950px 600px at 50% -8%,
-      color-mix(in oklab, var(--color-accent) 30%, transparent),
-      transparent 65%
-    ),
-    radial-gradient(
-      800px 600px at 105% 90%,
-      color-mix(in oklab, var(--color-accent-2) 24%, transparent),
-      transparent 65%
-    );
+  background-image: none;
+}
+
+/* ---------- Dracula theme utilities ---------- */
+[data-theme="dracula"] .name-shine {
+  background: linear-gradient(90deg, #BD93F9, #FF79C6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
+
+[data-theme="dracula"] .btn-gradient-dracula {
+  background: linear-gradient(135deg, #BD93F9, #FF79C6);
+}
+
+[data-theme="dracula"] .btn-gradient-dracula:hover {
+  background: linear-gradient(135deg, #CBA6FF, #FF9BD2);
+}
+
+[data-theme="dracula"] ::selection {
+  background: #8BE9FD;
+  color: #282A36;
+}
+
+[data-theme="dracula"] :focus-visible {
+  outline: 2px solid #BD93F9;
+  outline-offset: 2px;
+}
+
+/* Navbar: light links, purple hover/active */
+[data-theme="dracula"] header nav a {
+  color: var(--color-heading);
+}
+
+[data-theme="dracula"] header nav a:hover,
+[data-theme="dracula"] header nav a[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+/* Footer: alternate background, purple links, pink hover */
+[data-theme="dracula"] footer {
+  background-color: var(--color-alt);
+}
+
+[data-theme="dracula"] footer a {
+  color: var(--color-accent);
+}
+
+/* Skills: purple icons, pink hover accents, flat cards */
+[data-theme="dracula"] .skill-card svg {
+  color: var(--color-accent) !important;
+}
+
+/* Monochrome marks (Next.js, Express, Better Auth, GitHub) turn black
+   on the two light themes; other themes keep their white look. */
+[data-theme="nord-light"] .skill-card svg.icon-mono,
+[data-theme="clean-light"] .skill-card svg.icon-mono {
+  color: #000000 !important;
+}
+
+[data-theme="dracula"] .skill-card:hover {
+  border-color: color-mix(in oklab, var(--color-accent-2) 45%, transparent);
+  box-shadow: none !important;
+}
+
+/* Projects: restrained hover, no glow */
+[data-theme="dracula"] .project-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: none !important;
+}
+
+/* ---------- Clean Light theme utilities ---------- */
+/* Name keeps its shine animation, recolored blue → purple. */
+[data-theme="clean-light"] .name-shine {
+  background-image: linear-gradient(110deg, #2563EB 0%, #7C3AED 50%, #2563EB 100%);
+}
+
+[data-theme="clean-light"] .btn-gradient-light {
+  background: linear-gradient(90deg, #2563EB, #7C3AED);
+  box-shadow: 0 2px 8px rgb(37 99 235 / 20%);
+}
+
+[data-theme="clean-light"] .btn-gradient-light:hover {
+  background: linear-gradient(90deg, #1D4ED8, #6D28D9);
+  box-shadow: 0 4px 14px rgb(37 99 235 / 28%);
+}
+
+[data-theme="clean-light"] .btn-outline-light {
+  border-color: #2563EB;
+  background-color: transparent;
+  color: #2563EB;
+}
+
+[data-theme="clean-light"] .btn-outline-light:hover {
+  border-color: #2563EB;
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+}
+
+[data-theme="clean-light"] ::selection {
+  background: #2563EB;
+  color: #ffffff;
+}
+
+[data-theme="clean-light"] :focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+/* Navbar: gray links, blue hover/active, faint shadow for separation. */
+[data-theme="clean-light"] header nav a {
+  color: #374151;
+}
+
+[data-theme="clean-light"] header nav a:hover {
+  color: #1D4ED8;
+}
+
+[data-theme="clean-light"] header nav a[aria-current="page"] {
+  color: #2563EB;
+}
+
+[data-theme="clean-light"] header > div {
+  box-shadow:
+    0 1px 2px rgb(17 24 39 / 4%),
+    0 6px 18px rgb(17 24 39 / 4%);
+}
+
+[data-theme="clean-light"] footer {
+  background-color: #F3F4F6;
+}
+
+[data-theme="clean-light"] section[id] {
+  border-top-color: var(--color-line);
+}
+
+/* Cards: subtle depth on light gray sections, restrained hovers. */
+[data-theme="clean-light"] .skill-card,
+[data-theme="clean-light"] .project-card {
+  box-shadow: 0 1px 2px rgb(17 24 39 / 5%);
+}
+
+[data-theme="clean-light"] .skill-card:hover {
+  border-color: #2563EB;
+  box-shadow: 0 6px 18px rgb(37 99 235 / 12%);
+}
+
+[data-theme="clean-light"] .project-card:hover {
+  border-color: #D1D5DB;
+  box-shadow: 0 10px 26px rgb(17 24 39 / 8%);
+}
+
+[data-theme="clean-light"] .project-card p.text-muted {
+  color: #4B5563;
+}
+
+[data-theme="clean-light"] .about-photo {
+  box-shadow: 0 12px 32px rgb(17 24 39 / 10%);
+}
+
+[data-theme="clean-light"] .about-photo-tag {
+  box-shadow: 0 4px 12px rgb(17 24 39 / 8%);
+}
+
+[data-theme="clean-light"] .stack-badge {
+  border-color: #E5E7EB;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgb(17 24 39 / 8%);
+}
+
+/* Badges: tech chips keep brand icons, calm blue/gray surfaces. */
+[data-theme="clean-light"] .skill-card li.reveal-item {
+  background-color: rgb(239 246 255 / 60%);
+  color: #1D4ED8;
+}
+
+[data-theme="clean-light"] .project-card li {
+  background-color: rgb(243 244 246 / 65%);
+  color: #374151;
+}
+
+/* Orbit icons: no chip — the background matches the page so only the
+   icons show and the orbit lines stay hidden behind them. */
+[data-theme="clean-light"] .orbit-icon,
+[data-theme="clean-light"] .counter-orbit-icon {
+  border: none;
+  box-shadow: none;
+  background-color: var(--color-ink);
+}
+
+/* Particles + meteors: soft blue/purple instead of neon glow. */
+[data-theme="clean-light"] .particle.cyan {
+  box-shadow: 0 0 6px 1px rgb(37 99 235 / 15%);
+}
+
+[data-theme="clean-light"] .particle.purple {
+  box-shadow: 0 0 6px 1px rgb(124 58 237 / 15%);
+}
+
+[data-theme="clean-light"] .shooting-star-slow,
+[data-theme="clean-light"] .shooting-star-fast {
+  background: linear-gradient(90deg, transparent 0%, #93C5FD 65%, #7C3AED 100%);
+  filter: drop-shadow(0 0 6px rgb(37 99 235 / 25%));
+}
+
+/* Footer: gray text, blue accents. */
+[data-theme="clean-light"] footer a {
+  color: #4B5563;
+}
+
+[data-theme="clean-light"] footer a:hover {
+  border-color: #2563EB;
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+}
+
+/* ---------- Glass cards (Dark Neon + Clean Light only) ---------- */
+[data-theme="dark-neon"] .glass-card,
+[data-theme="clean-light"] .glass-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="dark-neon"] .glass-card {
+  background-color: color-mix(in oklab, var(--color-surface) 45%, transparent);
+}
+
+[data-theme="clean-light"] .glass-card {
+  background-color: rgb(255 255 255 / 60%);
 }
 
 [data-theme="nord-light"] body {
@@ -438,17 +756,17 @@ body {
   border-color: color-mix(in oklab, var(--color-accent-2) 75%, transparent);
 }
 
-/* Shadows live only on the light theme. Dark themes stay flat. */
-html:not([data-theme="nord-light"]) .about-photo,
-html:not([data-theme="nord-light"]) .about-photo-tag {
+/* Shadows live only on the light themes. Dark themes stay flat. */
+html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .about-photo,
+html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .about-photo-tag {
   box-shadow: none;
 }
 
-html:not([data-theme="nord-light"]) .skill-card:hover {
+html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .skill-card:hover {
   box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
 }
 
-html:not([data-theme="nord-light"]) .project-card:hover {
+html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .project-card:hover {
   box-shadow: none;
 }
 

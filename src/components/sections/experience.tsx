@@ -74,7 +74,7 @@ const Experience = () => {
                 <FaBriefcase className={`size-4 sm:size-5 ${accent}`} />
               </span>
 
-              <div className="rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-accent/25 sm:p-6">
+              <div className="glass-card rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-accent/25 sm:p-6">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <h3 className="text-lg font-semibold text-heading sm:text-xl">

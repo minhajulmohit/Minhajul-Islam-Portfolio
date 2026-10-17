@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useLayoutEffect,
   useState,
   type ReactNode,
@@ -14,6 +15,7 @@ export const THEMES = [
   "cyberpunk",
   "dracula",
   "nord-light",
+  "clean-light",
   "mocha",
 ] as const;
 
@@ -51,6 +53,28 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const cycleTheme = useCallback(() => {
     setTheme((t) => THEMES[(THEMES.indexOf(t) + 1) % THEMES.length]);
   }, []);
+
+  /* "T" key cycles themes too. Ignores typing contexts and
+     modifier/browser shortcuts (Ctrl+T etc.) and held keys. */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+      if (event.key.toLowerCase() !== "t") return;
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.isContentEditable ||
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT")
+      ) {
+        return;
+      }
+      cycleTheme();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [cycleTheme]);
 
   return (
     <ThemeContext.Provider value={{ theme, cycleTheme }}>

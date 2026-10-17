@@ -117,7 +117,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-on-accent hover:bg-accent-hi"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent btn-gradient-cyber btn-gradient-dracula btn-gradient-light px-4 py-2 text-sm font-semibold text-on-accent hover:bg-accent-hi"
                 >
                   <FaExternalLinkAlt aria-hidden="true" className="size-3" />
                   Live project
@@ -132,7 +132,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-line bg-surface px-4 py-2 text-sm font-semibold text-heading hover:border-accent/30"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-accent-2 bg-transparent px-4 py-2 text-sm font-semibold text-accent-2 hover:bg-accent-2 hover:text-ink btn-outline-light"
                 >
                   <FaGithub aria-hidden="true" className="size-4" />
                   GitHub repository

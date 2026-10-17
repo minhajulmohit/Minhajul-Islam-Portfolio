@@ -34,6 +34,7 @@ type Skill = {
   name: string;
   icon: IconType;
   color: string;
+  mono?: boolean;
 };
 
 type SkillGroup = {
@@ -54,7 +55,7 @@ const skillGroups: SkillGroup[] = [
       { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "React", icon: FaReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs, color: "#F8FAFC" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#F8FAFC", mono: true },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
     ],
   },
@@ -64,7 +65,7 @@ const skillGroups: SkillGroup[] = [
     accent: "text-accent-2",
     skills: [
       { name: "Node.js", icon: FaNodeJs, color: "#68A063" },
-      { name: "Express.js", icon: SiExpress, color: "#F8FAFC" },
+      { name: "Express.js", icon: SiExpress, color: "#F8FAFC", mono: true },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
     ],
   },
@@ -73,7 +74,7 @@ const skillGroups: SkillGroup[] = [
     description: "Authentication flows and secure sign-in integrations.",
     accent: "text-accent-2",
     skills: [
-      { name: "Better Auth", icon: SiBetterauth, color: "#F8FAFC" },
+      { name: "Better Auth", icon: SiBetterauth, color: "#F8FAFC", mono: true },
       { name: "OAuth 2.0", icon: FaKey, color: "#A78BFA" },
       { name: "Authentication", icon: FaLock, color: "#67E8F9" },
     ],
@@ -94,7 +95,7 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: "VS Code", icon: VscVscode, color: "#007ACC" },
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
-      { name: "GitHub", icon: FaGithub, color: "#F8FAFC" },
+      { name: "GitHub", icon: FaGithub, color: "#F8FAFC", mono: true },
     ],
   },
   {
@@ -160,7 +161,7 @@ const Skills = () => {
             <Reveal
               key={group.title}
               variant={cardVariants[groupIndex % cardVariants.length]}
-              className="skill-card group rounded-2xl border border-line bg-surface p-5 transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/20 sm:p-6"
+              className="skill-card glass-card group rounded-2xl border border-line bg-surface p-5 transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/20 sm:p-6"
             >
               <div className="flex items-start gap-3">
                 <span
@@ -178,7 +179,7 @@ const Skills = () => {
               </div>
 
               <ul className="mt-6 flex flex-wrap gap-2.5">
-                {group.skills.map(({ name, icon: Icon, color }, skillIndex) => (
+                {group.skills.map(({ name, icon: Icon, color, mono }, skillIndex) => (
                   <li
                     key={name}
                     style={{ transitionDelay: `${300 + skillIndex * 70}ms` }}
@@ -186,7 +187,7 @@ const Skills = () => {
                   >
                     <Icon
                       aria-hidden="true"
-                      className="size-4 shrink-0 sm:size-4.5"
+                      className={`size-4 shrink-0 sm:size-4.5${mono ? " icon-mono" : ""}`}
                       style={{ color }}
                     />
                     <span className="whitespace-nowrap">{name}</span>

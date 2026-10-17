@@ -84,7 +84,7 @@ const Education = () => {
                   <Icon className={`size-4 sm:size-5 ${accent}`} />
                 </span>
 
-                <div className="rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-accent/25 sm:p-6">
+                <div className="glass-card rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-accent/25 sm:p-6">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div className="min-w-0">
                       <p

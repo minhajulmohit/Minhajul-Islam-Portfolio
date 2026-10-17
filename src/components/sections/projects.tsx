@@ -34,7 +34,7 @@ const Projects = () => {
             <Reveal
               key={project.slug}
               variant={cardVariants[index % cardVariants.length]}
-              className="project-card group grid min-w-0 gap-5 rounded-2xl border border-line bg-surface p-4 transition duration-300 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/20 sm:gap-7 sm:p-6 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-8"
+              className="project-card glass-card group grid min-w-0 gap-5 rounded-2xl border border-line bg-surface p-4 transition duration-300 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/20 sm:gap-7 sm:p-6 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-8"
             >
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                 <ProjectPreview slug={project.slug} name={project.name} />

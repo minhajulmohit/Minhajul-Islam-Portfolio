@@ -30,14 +30,14 @@ export default function CvPage() {
         <a
           href={CV_PATH}
           download={CV_FILE}
-          className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-hi focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-accent btn-gradient-cyber btn-gradient-dracula btn-gradient-light px-4 py-2 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-hi focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2"
         >
           <FaDownload aria-hidden="true" className="size-3.5" />
           Download
         </a>
       </div>
 
-      <div className="mx-auto mt-4 w-full max-w-6xl min-h-0 flex-1 overflow-hidden rounded-2xl border border-line bg-white">
+      <div className="mx-auto mt-4 w-full max-w-6xl min-h-0 flex-1 overflow-hidden rounded-2xl border border-line bg-surface">
         <iframe src={CV_PATH} title="CV preview" className="h-full w-full" />
       </div>
 

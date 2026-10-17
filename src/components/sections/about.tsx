@@ -108,7 +108,7 @@ const About = () => {
               </a>
               <a
                 href="#projects"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-heading transition-colors hover:border-accent-2/40 hover:bg-accent-2/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-heading transition-colors hover:border-accent-2/40 hover:bg-accent-2/10 btn-outline-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-2"
               >
                 Explore My Projects
               </a>

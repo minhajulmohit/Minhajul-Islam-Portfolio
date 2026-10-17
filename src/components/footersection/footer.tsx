@@ -22,7 +22,7 @@ const Footer = () => (
   <footer className="border-t border-line px-4 py-6 sm:px-8">
     <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
       <p className="text-center text-xs text-muted sm:text-left">
-        © 2026 Minhajul Islam Mohit
+        © 2026 Minhajul Islam Mohit. All Rights Reserved.
       </p>
       <nav aria-label="Social links" className="flex items-center gap-2">
         {socialLinks.map(({ label, href, Icon }) => (

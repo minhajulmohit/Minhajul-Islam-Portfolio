@@ -580,7 +580,6 @@ body {
   color: var(--color-heading);
   font-weight: 500;
   box-shadow: 0 4px 18px color-mix(in oklab, var(--color-accent) 25%, transparent);
-  backdrop-filter: blur(10px);
   opacity: 0;
   animation: stack-badge-float 11s ease-in-out infinite;
   will-change: transform, opacity;
@@ -873,6 +872,10 @@ html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .project-car
     transition: none !important;
     animation: none !important;
   }
+
+  .enter {
+    animation: none !important;
+  }
 }
 
 @keyframes orbit-spin {
@@ -950,7 +953,6 @@ html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .project-car
   transition:
     opacity 0.7s ease,
     transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-from-left {
@@ -1005,6 +1007,61 @@ html:not([data-theme="nord-light"]):not([data-theme="clean-light"]) .project-car
 .reveal.is-visible .reveal-item {
   opacity: 1;
   transform: none;
+}
+
+/* Hero entrance: runs from the first paint (pure CSS, no JS gate).
+   `.enter-rise` is transform-only on purpose — its text is visible
+   immediately so it can be painted as the LCP element. */
+.enter {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.enter-rise {
+  animation-name: enter-rise;
+}
+
+.enter-fade-up {
+  animation-name: enter-fade-up;
+}
+
+.enter-pop {
+  animation-name: enter-pop;
+}
+
+@keyframes enter-rise {
+  from {
+    transform: translateY(48px);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes enter-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes enter-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* DevPet: crisp pixels + bubble pop. */

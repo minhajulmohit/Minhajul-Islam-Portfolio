@@ -1,7 +1,7 @@
 import OrbitProfile from "./orbitprofile";
 import { FaArrowRight, FaEye, FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
-import Reveal from "@/components/reveal";
+import Enter from "@/components/enter";
 
 const socials = [
   {
@@ -30,22 +30,19 @@ const Hero = () => {
     >
       <div className="w-full min-w-0 sm:w-1/2 sm:text-left">
         <h1 className="text-4xl font-bold sm:text-5xl">
-          <Reveal as="span" variant="from-bottom" className="block text-heading">
+          <Enter as="span" variant="rise" className="block text-heading">
             Hi, I&apos;m
-          </Reveal>
-          <Reveal
-            as="span"
-            variant="from-bottom"
-            delay={120}
-            className="name-shine block text-gradient-cyber"
-          >
-            Minhajul Islam Mohit
-          </Reveal>
+          </Enter>
+          <Enter as="span" variant="rise" delay={120} className="block">
+            <span className="name-shine text-gradient-cyber block">
+              Minhajul Islam Mohit
+            </span>
+          </Enter>
         </h1>
-        <Reveal variant="from-bottom" delay={220}>
+        <Enter variant="fade-up" delay={220}>
           <p className="text-body font-bold">Full Stack Web Developer.</p>
-        </Reveal>
-        <Reveal variant="from-bottom" delay={300}>
+        </Enter>
+        <Enter variant="fade-up" delay={300}>
           <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
             <Link
               href="/cv"
@@ -62,13 +59,13 @@ const Hero = () => {
               <FaArrowRight aria-hidden="true" className="size-3" />
             </a>
           </div>
-        </Reveal>
+        </Enter>
         <div className="mt-6 flex items-center gap-3">
           {socials.map(({ label, href, Icon }, index) => (
-            <Reveal
+            <Enter
               key={label}
               as="span"
-              variant="zoom-in"
+              variant="pop"
               delay={420 + index * 100}
               className="inline-block"
             >
@@ -82,17 +79,17 @@ const Hero = () => {
               >
                 <Icon aria-hidden="true" className="size-4" />
               </a>
-            </Reveal>
+            </Enter>
           ))}
         </div>
       </div>
-      <Reveal
-        variant="zoom-in"
+      <Enter
+        variant="pop"
         delay={150}
         className="flex w-full min-w-0 justify-center sm:w-1/2"
       >
         <OrbitProfile />
-      </Reveal>
+      </Enter>
     </section>
   );
 };

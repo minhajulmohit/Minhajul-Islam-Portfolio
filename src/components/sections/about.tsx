@@ -47,10 +47,8 @@ const About = () => {
                 <Image
                   src="/asset/PPP.jpg"
                   alt="Minhajul Islam Mohit"
-                  
+                  fill
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 360px"
-                  height={50000}
-                  width={50000}
                   className="object-cover"
                 />
               </div>

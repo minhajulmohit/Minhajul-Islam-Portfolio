@@ -37,6 +37,9 @@ const OrbitProfile = () => {
           src={Profile}
           alt="My Profile"
           fill
+          sizes="(min-width: 640px) 256px, 128px"
+          loading="eager"
+          fetchPriority="high"
           className="rounded-full object-cover"
         ></Image>
         <div className="absolute inset-0 rounded-full border-2 border-accent"></div>

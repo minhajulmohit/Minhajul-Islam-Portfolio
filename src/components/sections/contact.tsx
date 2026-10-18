@@ -17,7 +17,7 @@ const contactMethods = [
   },
   {
     label: "Phone",
-    value: "01906104529",
+    value: "88 01906104529",
     href: "tel:+8801906104529",
     Icon: FaPhoneAlt,
     accent: "text-accent-2",

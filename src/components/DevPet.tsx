@@ -101,6 +101,15 @@ const DevPet = () => {
     let prev = performance.now();
     let running = true;
 
+    /* Cache the viewport size — reading it on every frame is wasteful. */
+    let vw = window.innerWidth;
+    let vh = window.innerHeight;
+    const onResize = () => {
+      vw = window.innerWidth;
+      vh = window.innerHeight;
+    };
+    window.addEventListener("resize", onResize, { passive: true });
+
     const onPoint = (x: number, y: number) => {
       /* A real move (not hand tremor) re-engages the cat immediately,
          cancelling any cooldown. */
@@ -156,28 +165,49 @@ const DevPet = () => {
       return false;
     };
 
+    /* Only touch the DOM when something actually changed. */
+    let lastPlacedX = NaN;
+    let lastPlacedFrame = -1;
+    let lastAlign: Align = "center";
+
     const place = (frameX: number) => {
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translate3d(${s.x.toFixed(1)}px, 0, 0)`;
+      if (s.x !== lastPlacedX) {
+        lastPlacedX = s.x;
+        if (trackRef.current) {
+          trackRef.current.style.transform = `translate3d(${s.x.toFixed(1)}px, 0, 0)`;
+        }
       }
-      if (spriteRef.current) {
-        spriteRef.current.style.backgroundPosition = `-${frameX * FRAME_SIZE}px 0px`;
+      if (frameX !== lastPlacedFrame) {
+        lastPlacedFrame = frameX;
+        if (spriteRef.current) {
+          spriteRef.current.style.backgroundPosition = `-${frameX * FRAME_SIZE}px 0px`;
+        }
       }
-      const vw = window.innerWidth;
       const next: Align =
         s.x < 110 ? "left" : s.x > vw - 110 - PET_SIZE ? "right" : "center";
-      setAlign((a) => (a === next ? a : next));
+      if (next !== lastAlign) {
+        lastAlign = next;
+        setAlign(next);
+      }
     };
+
+    /* The walk cycle is 30 fps — no need to run the loop at 60. */
+    const DRAW_INTERVAL = 1000 / 30;
+    let lastDraw = 0;
 
     const loop = (now: number) => {
       if (!running) return;
+      if (now - lastDraw < DRAW_INTERVAL) {
+        frame = requestAnimationFrame(loop);
+        return;
+      }
+      lastDraw = now;
       const dt = Math.min((now - prev) / 1000, 0.05);
       prev = now;
-      const vw = window.innerWidth;
       const minX = 0;
       const maxX = Math.max(vw - PET_SIZE, 1);
 
-      s.tick = (s.tick + 1) % 12;
+      s.tick = (s.tick + 1) % 6;
       if (s.tick === 0) {
         const on = fastMidScreen(now);
         if (on !== s.mark) {
@@ -194,7 +224,7 @@ const DevPet = () => {
         /* A resting cursor near the bottom always attracts the cat;
            after each visit it walks free for a while, then comes back. */
         const mouseFresh = now - s.lastMove < 2500;
-        const mouseLow = s.mouseY > window.innerHeight - 220;
+        const mouseLow = s.mouseY > vh - 220;
         const cooled = now > s.coolUntil;
         if (
           (mouseFresh || mouseLow) &&
@@ -255,6 +285,7 @@ const DevPet = () => {
       } else if (!running) {
         running = true;
         prev = performance.now();
+        lastDraw = prev;
         frame = requestAnimationFrame(loop);
       }
     };
@@ -268,6 +299,7 @@ const DevPet = () => {
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("resize", onResize);
       if (bubbleTimer.current) clearTimeout(bubbleTimer.current);
       if (sitTimer.current) clearTimeout(sitTimer.current);
     };

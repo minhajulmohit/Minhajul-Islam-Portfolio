@@ -20,6 +20,7 @@ This site is a single place to explore my work: featured projects with dedicated
 - **Animated experience** — orbiting hero profile, floating particles, and scroll-reveal sections using CSS animations, all respecting `prefers-reduced-motion`.
 - **Project case studies** — dynamic routes at `/projects/[slug]` with video previews, tech stacks, key features, challenges, and future plans.
 - **CV page** — in-browser PDF preview with a direct download at `/cv`.
+- **Direct message form** — contact section with quick-reach cards and a validated message form that delivers straight to my inbox through a Resend-powered Server Action.
 - **Fully responsive & accessible** — mobile navigation, semantic sections, focus-visible states, and keyboard support throughout.
 - **Analytics built in** — Vercel Analytics and Speed Insights integrated at the root layout.
 
@@ -30,6 +31,7 @@ This site is a single place to explore my work: featured projects with dedicated
 | Framework  | [Next.js 16](https://nextjs.org) (App Router) with Turbopack               |
 | UI         | [React 19](https://react.dev), [Tailwind CSS 4](https://tailwindcss.com), [react-icons](https://react-icons.github.io/react-icons/) |
 | Language   | [TypeScript 5](https://www.typescriptlang.org)                             |
+| Email      | [Resend](https://resend.com) via a Next.js Server Action                    |
 | Fonts      | Geist Sans & Geist Mono via `next/font`                                    |
 | Analytics  | [Vercel Analytics](https://vercel.com/analytics) & [Speed Insights](https://vercel.com/docs/speed-insights) |
 | Deployment | [Vercel](https://vercel.com)                                               |
@@ -42,6 +44,7 @@ src/
 │   ├── layout.tsx         # Root layout: fonts, metadata, providers, analytics
 │   ├── page.tsx           # Home page composing all sections
 │   ├── globals.css        # Tailwind v4 theme tokens and per-theme styles
+│   ├── actions/           # Server Actions (contact form → Resend)
 │   ├── cv/page.tsx        # CV preview + download page
 │   └── projects/[slug]/   # Dynamic project case-study pages
 ├── components/
@@ -62,6 +65,24 @@ public/
 ├── pets/                  # Cat sprite frames for DevPet
 └── projects/<slug>/       # Project preview videos
 ```
+
+## Contact form setup
+
+The Direct Message form posts to a Server Action that sends email through [Resend](https://resend.com).
+
+1. Create a Resend account and an API key.
+2. Verify a sending domain (or use `onboarding@resend.dev` in test mode — it only delivers to the Resend account owner's email).
+3. Copy `.env.example` to `.env.local` and fill in the values:
+
+```bash
+RESEND_API_KEY=re_...
+RESEND_FROM_EMAIL="Portfolio Contact <contact@your-domain.com>"
+CONTACT_TO_EMAIL=minhajul.mohit@gmail.com
+```
+
+4. Add the same variables in your Vercel project settings, then redeploy.
+
+Without `RESEND_API_KEY` the form stays visible but shows a "not configured" message.
 
 ## Contact
 

@@ -194,7 +194,7 @@ body {
 
 /* Contact: inputs and focus states */
 [data-theme="cyberpunk"] .contact-input {
-  background-color: var(--color-surface);
+  background-color: color-mix(in oklab, var(--color-ink) 72%, transparent);
   color: var(--color-heading);
   border-color: var(--color-line);
 }
